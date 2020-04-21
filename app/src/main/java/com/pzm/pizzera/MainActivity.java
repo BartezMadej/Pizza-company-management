@@ -1,10 +1,10 @@
 package com.pzm.pizzera;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 
-import lombok.Data;
+import com.pzm.pizzera.register.RegisterActivity;
+
 
 public class MainActivity extends BaseActivity {
 
@@ -12,5 +12,8 @@ public class MainActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		Intent myIntent = new Intent(this, RegisterActivity.class);
+		startActivity(myIntent);
 	}
 }
