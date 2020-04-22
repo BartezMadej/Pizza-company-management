@@ -11,11 +11,16 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthEmailException;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.Random;
+import java.util.stream.Stream;
 
 public class RegisterInteractor {
+
+	final String TAG = "RegisterInteractor";
 
 	interface OnRegisterFinishedListener {
 		void onEmailError();
@@ -52,30 +57,47 @@ public class RegisterInteractor {
 			return;
 		}
 
+		HashMap<String, String> map = new HashMap<String, String>() {{
+			put("name", name);
+			put("surname", surname);
+			put("email", email);
+			put("phoneNumber", phoneNumber);
+		}};
+
 		FirebaseAuth.getInstance()
 				.createUserWithEmailAndPassword(email, getSaltString())
 				.addOnCompleteListener(
 						task -> {
 							if (task.isSuccessful()) {
-//									listener.onSuccess();
+								writeUser(task.getResult().getUser(), map);
 								resetPassword(email, listener);
 							} else {
 								String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
 								if (errorCode == "ERROR_EMAIL_ALREADY_IN_USE")
 									listener.onEmailExists();
 								else
-									Log.d("RegisterInteractor", "onComplete: " + errorCode);
+									Log.d(TAG, "onComplete: " + errorCode);
 							}
 						}
 				);
 	}
 
+	private void writeUser(FirebaseUser firebaseUser, HashMap<String, String> map) {
+		FirebaseDatabase.getInstance().getReference()
+				.child("users")
+				.child(firebaseUser.getUid())
+				.setValue(map)
+				.addOnCompleteListener(task -> {
+					Log.d(TAG, "writeUser: " + task.isSuccessful());
+				});
+	}
+
 	private void resetPassword(String email, OnRegisterFinishedListener listener) {
 		FirebaseAuth.getInstance().sendPasswordResetEmail(email)
 				.addOnCompleteListener(task -> {
+					Log.d(TAG, "resetPassword onComplete: " + task.isSuccessful());
 					if (task.isSuccessful())
 						listener.onSuccess();
-					Log.d("RegisterInteractor", "resetPassword onComplete: " + task.isSuccessful());
 				});
 	}
 
