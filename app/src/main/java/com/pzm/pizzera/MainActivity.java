@@ -1,16 +1,11 @@
 package com.pzm.pizzera;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 import lombok.Data;
 
-public class MainActivity extends BaseActivity {
-
+public class MainActivity extends DrawerActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
 	}
 }
