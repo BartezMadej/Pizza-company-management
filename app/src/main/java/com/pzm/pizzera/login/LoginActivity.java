@@ -14,7 +14,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pzm.pizzera.LoggedActivity;
 import com.pzm.pizzera.MainActivity;
 import com.pzm.pizzera.R;
 
@@ -109,7 +108,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     @Override
     public void navigateToHome()
     {
-        Intent intent=new Intent(this, LoggedActivity.class);
+        Intent intent=new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
