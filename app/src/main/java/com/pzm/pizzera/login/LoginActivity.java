@@ -1,7 +1,5 @@
 package com.pzm.pizzera.login;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,10 +12,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.pzm.pizzera.MainActivity;
 import com.pzm.pizzera.R;
 
-public class LoginActivity extends AppCompatActivity implements LoginView{
+public class LoginActivity extends AppCompatActivity implements LoginView {
 
     private EditText mTextViewEmail;
     private EditText mTextViewPassword;
@@ -28,20 +28,21 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     private TextView mTextViewTimer;
     private CheckBox mCheckboxRemember;
     public static SharedPreferences mPrefs;
-    public final static String PREFS_NAME="UserData";
-    public final static int TIME_TO_WAIT=30000;
+    public final static String PREFS_NAME = "UserData";
+    public final static int TIME_TO_WAIT = 30000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mTextViewEmail =findViewById(R.id.email);
-        mTextViewPassword =findViewById(R.id.password);
-        mProgressBar=findViewById(R.id.progressBar);
-        mButtonLogin =findViewById(R.id.loginButton);
-        mTextViewTimer =findViewById(R.id.timerText);
-        mCheckboxRemember=findViewById(R.id.checkBoxRememberMe);
-        mPrefs=getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+        mTextViewEmail = findViewById(R.id.email);
+        mTextViewPassword = findViewById(R.id.password);
+        mProgressBar = findViewById(R.id.progressBar);
+        mButtonLogin = findViewById(R.id.loginButton);
+        mTextViewTimer = findViewById(R.id.timerText);
+        mCheckboxRemember = findViewById(R.id.checkBoxRememberMe);
+        mPrefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
         getPreferenceData();
         mPresenter = new LoginPresenter(this, new LoginModel());
@@ -52,6 +53,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
             }
         });
     }
+
     @Override
     protected void onStart() // methods called after onCreate
     {
@@ -80,21 +82,23 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     }
 
     @Override
-    public void reportFailure()
-    { Toast.makeText(LoginActivity.this,"Failed",Toast.LENGTH_SHORT).show(); }
+    public void reportFailure() {
+        Toast.makeText(LoginActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+    }
 
     @Override
-    public void reportSuccess()
-    { Toast.makeText(LoginActivity.this,"Logged in",Toast.LENGTH_SHORT).show(); }
+    public void reportSuccess() {
+        Toast.makeText(LoginActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public void startTimer() {
         mButtonLogin.setEnabled(false);
         mTextViewTimer.setVisibility(View.VISIBLE);
-        mCountDownTimer=new CountDownTimer(TIME_TO_WAIT,1000) {
+        mCountDownTimer = new CountDownTimer(TIME_TO_WAIT, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                mTextViewTimer.setText(getString(R.string.await,millisUntilFinished/1000));
+                mTextViewTimer.setText(getString(R.string.await, millisUntilFinished / 1000));
             }
 
             @Override
@@ -106,41 +110,38 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     }
 
     @Override
-    public void navigateToHome()
-    {
-        Intent intent=new Intent(this, MainActivity.class);
+    public void navigateToHome() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
+
     @Override
-    protected void onDestroy()
-    {
+    protected void onDestroy() {
         super.onDestroy();
-        mTextViewEmail =null;
-        mPresenter=null;
-        mButtonLogin =null;
-        mProgressBar=null;
-        mTextViewTimer =null;
-        mCountDownTimer=null;
-        mCheckboxRemember=null;
-        mPrefs=null;
+        mTextViewEmail = null;
+        mPresenter = null;
+        mButtonLogin = null;
+        mProgressBar = null;
+        mTextViewTimer = null;
+        mCountDownTimer = null;
+        mCheckboxRemember = null;
+        mPrefs = null;
     }
-    private void validateCredential()
-    {
+
+    private void validateCredential() {
         mPresenter.validateCredentials(mTextViewEmail.getText().toString().trim(),
-                mTextViewPassword.getText().toString().trim(),mCheckboxRemember.isChecked());
+                mTextViewPassword.getText().toString().trim(), mCheckboxRemember.isChecked());
     }
-    private void getPreferenceData()
-    {
-        SharedPreferences prefs=getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
-        if(prefs.contains("user_email"))
-        {
-            String prefsEmail=prefs.getString("user_email","");
+
+    private void getPreferenceData() {
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        if (prefs.contains("user_email")) {
+            String prefsEmail = prefs.getString("user_email", "");
             mTextViewEmail.setText(prefsEmail.toString());
         }
-        if(prefs.contains("user_password"))
-        {
-            String prefsPassword=prefs.getString("user_password","");
+        if (prefs.contains("user_password")) {
+            String prefsPassword = prefs.getString("user_password", "");
             mTextViewPassword.setText(prefsPassword.toString());
         }
         mCheckboxRemember.setChecked(true);

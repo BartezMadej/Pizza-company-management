@@ -1,14 +1,9 @@
 package com.pzm.pizzera.register;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 
 import com.pzm.pizzera.BaseActivity;
 import com.pzm.pizzera.R;

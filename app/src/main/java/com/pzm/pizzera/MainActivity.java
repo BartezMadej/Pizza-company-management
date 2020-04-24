@@ -1,7 +1,6 @@
 package com.pzm.pizzera;
-import android.os.Bundle;
 
-import lombok.Data;
+import android.os.Bundle;
 
 public class MainActivity extends DrawerActivity {
 	@Override

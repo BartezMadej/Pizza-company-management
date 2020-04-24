@@ -1,9 +1,9 @@
 package com.pzm.pizzera;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
 import android.widget.ProgressBar;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 

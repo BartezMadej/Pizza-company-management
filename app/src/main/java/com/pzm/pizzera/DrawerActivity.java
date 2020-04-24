@@ -1,13 +1,15 @@
 package com.pzm.pizzera;
 
-import android.content.*;
+import android.content.Context;
 import android.os.Bundle;
-import android.view.*;
-import android.widget.*;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
 
-import androidx.annotation.*;
+import androidx.annotation.NonNull;
 
-import com.google.android.material.navigation.*;
+import com.google.android.material.navigation.NavigationView;
 
 public class DrawerActivity extends BaseActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,14 +28,13 @@ public class DrawerActivity extends BaseActivity
 		}
 	}
 
-	private void inflateLayout(int activity)
-	{
+	private void inflateLayout(int activity) {
 		frameLayout = findViewById(R.id.content_frame);
 		LayoutInflater layoutInflater =
-				(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View activityView = layoutInflater != null ?
 				layoutInflater.inflate(activity, null, false) : null;
-		if(activityView!=null) {
+		if (activityView != null) {
 			frameLayout.addView(activityView);
 		}
 	}
@@ -42,16 +43,16 @@ public class DrawerActivity extends BaseActivity
 	public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 		int id = item.getItemId();
 
-		if(frameLayout!=null){
+		if (frameLayout != null) {
 			frameLayout.removeViewAt(0);
 		}
 
-		switch(id){
+		switch (id) {
 			case R.id.nav_login:
 				//inflateLayout(R.layout.activity_login);
 				break;
 			case R.id.nav_chat:
-			    //inflateLayout(R.layout.activity_chat);
+				//inflateLayout(R.layout.activity_chat);
 				break;
 			default:
 				break;
