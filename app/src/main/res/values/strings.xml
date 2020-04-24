@@ -1,3 +1,10 @@
 <resources>
-	<string name="app_name">Pizzera</string>
+    <string name="app_name">Pizzera</string>
+    <string name="adress_email">Adress email</string>
+    <string name="password">Password</string>
+    <string name="log_in">log in</string>
+    <string name="Hello">Hello</string>
+    <string name="await">"Wait: "%1$d" sec"</string>
+    <string name="remember_me">Remember me</string>
+    <string name="Button">Button</string>
 </resources>
