@@ -16,4 +16,7 @@
 	<string name="await">"Wait: "%1$d" sec"</string>
 	<string name="remember_me">Remember me</string>
 	<string name="Button">Button</string>
+    <string name="please_enter_your_email_address">Please Enter Your Email Address</string>
+	<string name="send">Send</string>
+	<string name="there_is_no_such_user">There is no such user!</string>
 </resources>
