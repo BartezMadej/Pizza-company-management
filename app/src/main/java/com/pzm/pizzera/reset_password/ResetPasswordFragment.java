@@ -1,13 +1,15 @@
 package com.pzm.pizzera.reset_password;
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.pzm.pizzera.BaseActivity;
+import androidx.fragment.app.Fragment;
+
 import com.pzm.pizzera.R;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,22 +19,24 @@ import com.google.firebase.auth.FirebaseUser;
 
 import lombok.NonNull;
 
-public class ResetPassword extends BaseActivity implements ResetPasswordView {
+public class ResetPasswordFragment extends Fragment implements ResetPasswordView {
 
     public FirebaseAuth mAuth;
     private TextView comments;
     private EditText email;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reset_password);
+    public View onCreateView(@androidx.annotation.NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_register, container,false);
 
-        email = findViewById(R.id.editText);
-        comments = findViewById(R.id.textView);
+        email = view.findViewById(R.id.editText);
+        comments = view.findViewById(R.id.textView);
         mAuth = FirebaseAuth.getInstance();
 
-        findViewById(R.id.buttonCreateUser).setOnClickListener(v -> resetPassword());
+        view.findViewById(R.id.buttonCreateUser).setOnClickListener(v -> resetPassword());
+
+        return view;
     }
 
     public void resetPassword() {
