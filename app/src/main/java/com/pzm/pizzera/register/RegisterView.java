@@ -11,6 +11,8 @@ public interface RegisterView {
 
 	void setPhoneNumberError();
 
+	void navigateBack();
+
 	void showProgress();
 
 	void hideProgress();

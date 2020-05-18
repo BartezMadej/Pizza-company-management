@@ -74,12 +74,12 @@ public class LoginModel {
 
 	private void rememberUserData(final String email, final String password, boolean ifChecked) {
 		if (ifChecked) {
-			SharedPreferences.Editor editor = LoginFragment.mPrefs.edit();
+			SharedPreferences.Editor editor = LoginActivity.mPrefs.edit();
 			editor.putString("user_email", email);
 			editor.putString("user_password", password);
 			editor.apply();
 		} else
-			LoginFragment.mPrefs.edit().clear().apply();
+			LoginActivity.mPrefs.edit().clear().apply();
 	}
 
 }

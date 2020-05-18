@@ -1,12 +1,10 @@
 package com.pzm.pizzera.login;
 
-import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -14,15 +12,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.pzm.pizzera.MainActivity;
 import com.pzm.pizzera.R;
-import com.pzm.pizzera.home.HomeFragment;
 
-public class LoginFragment extends Fragment implements LoginView {
+public class LoginActivity extends AppCompatActivity implements LoginView {
 
     private EditText mTextViewEmail;
     private EditText mTextViewPassword;
@@ -37,30 +32,33 @@ public class LoginFragment extends Fragment implements LoginView {
     public final static int TIME_TO_WAIT = 30000;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
 
-        View view = inflater.inflate(R.layout.fragment_login, container,false);
-
-        mTextViewEmail = view.findViewById(R.id.email);
-        mTextViewPassword = view.findViewById(R.id.password);
-        mProgressBar = view.findViewById(R.id.progressBar);
-        mButtonLogin = view.findViewById(R.id.loginButton);
-        mTextViewTimer = view.findViewById(R.id.timerText);
-        mCheckboxRemember = view.findViewById(R.id.checkBoxRememberMe);
-        mPrefs = this.getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        mTextViewEmail = findViewById(R.id.email);
+        mTextViewPassword = findViewById(R.id.password);
+        mProgressBar = findViewById(R.id.progressBar);
+        mButtonLogin = findViewById(R.id.loginButton);
+        mTextViewTimer = findViewById(R.id.timerText);
+        mCheckboxRemember = findViewById(R.id.checkBoxRememberMe);
+        mPrefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
         getPreferenceData();
         mPresenter = new LoginPresenter(this, new LoginModel());
-        mPresenter.checkIfAlreadyLogged();
         mButtonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 validateCredential();
             }
         });
+    }
 
-        return view;
+    @Override
+    protected void onStart() // methods called after onCreate
+    {
+        super.onStart();
+        mPresenter.checkIfAlreadyLogged();
     }
 
     @Override
@@ -85,12 +83,12 @@ public class LoginFragment extends Fragment implements LoginView {
 
     @Override
     public void reportFailure() {
-        Toast.makeText(getActivity(), "Failed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(LoginActivity.this, "Failed", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void reportSuccess() {
-        Toast.makeText(getActivity(), "Logged in", Toast.LENGTH_SHORT).show();
+        Toast.makeText(LoginActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -113,16 +111,13 @@ public class LoginFragment extends Fragment implements LoginView {
 
     @Override
     public void navigateToHome() {
-        Fragment fragment = new HomeFragment();
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
-    public void onDestroy() {
+    protected void onDestroy() {
         super.onDestroy();
         mTextViewEmail = null;
         mPresenter = null;
@@ -140,7 +135,7 @@ public class LoginFragment extends Fragment implements LoginView {
     }
 
     private void getPreferenceData() {
-        SharedPreferences prefs = this.getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         if (prefs.contains("user_email")) {
             String prefsEmail = prefs.getString("user_email", "");
             mTextViewEmail.setText(prefsEmail.toString());
