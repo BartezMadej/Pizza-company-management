@@ -2,15 +2,21 @@ package com.pzm.pizzera.register;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import com.pzm.pizzera.BaseActivity;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.pzm.pizzera.R;
 
-public class RegisterActivity extends BaseActivity implements RegisterView {
+public class RegisterFragment extends Fragment implements RegisterView {
 
-	final String TAG = "RegisterActivity";
+	final String TAG = "RegisterFragment";
 
 	private ProgressBar progressBar;
 	private EditText name;
@@ -21,21 +27,34 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
 	private RegisterPresenter presenter;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_register);
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+							 Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_register, container,false);
 
-		progressBar = findViewById(R.id.registerProgressBar);
-		name = findViewById(R.id.fieldName);
-		surname = findViewById(R.id.fieldSurname);
-		email = findViewById(R.id.fieldEmail);
-		phoneNumber = findViewById(R.id.fieldPhoneNumber);
+		progressBar = view.findViewById(R.id.registerProgressBar);
+		name = view.findViewById(R.id.fieldName);
+		surname = view.findViewById(R.id.fieldSurname);
+		email = view.findViewById(R.id.fieldEmail);
+		phoneNumber = view.findViewById(R.id.fieldPhoneNumber);
 
-		findViewById(R.id.buttonCreateUser).setOnClickListener(v -> validateForm());
+		view.findViewById(R.id.buttonCreateUser).setOnClickListener(v -> validateForm());
 
 		presenter = new RegisterPresenter(this, new RegisterInteractor());
+
+		return view;
 	}
 
+	private void showProgressBar() {
+		if (progressBar != null) {
+			progressBar.setVisibility(View.VISIBLE);
+		}
+	}
+
+	private void hideProgressBar() {
+		if (progressBar != null) {
+			progressBar.setVisibility(View.INVISIBLE);
+		}
+	}
 
 	@Override
 	public void setEmailError() {
@@ -63,11 +82,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
 	}
 
 	@Override
-	public void navigateBack() {
-		finish();
-	}
-
-	@Override
 	public void showProgress() {
 		showProgressBar();
 	}
@@ -85,6 +99,10 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
 				email.getText().toString(),
 				phoneNumber.getText().toString()
 		);
+	}
+
+	public String getUid() {
+		return FirebaseAuth.getInstance().getCurrentUser().getUid();
 	}
 }
 
