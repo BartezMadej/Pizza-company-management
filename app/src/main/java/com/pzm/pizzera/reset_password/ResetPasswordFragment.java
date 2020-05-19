@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.pzm.pizzera.BaseFragment;
 import com.pzm.pizzera.R;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import lombok.NonNull;
 
-public class ResetPasswordFragment extends Fragment implements ResetPasswordView {
+public class ResetPasswordFragment extends BaseFragment implements ResetPasswordView {
 
     public FirebaseAuth mAuth;
     private TextView comments;

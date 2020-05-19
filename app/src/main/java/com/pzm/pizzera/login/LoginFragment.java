@@ -19,10 +19,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.pzm.pizzera.BaseFragment;
 import com.pzm.pizzera.R;
 import com.pzm.pizzera.home.HomeFragment;
 
-public class LoginFragment extends Fragment implements LoginView {
+public class LoginFragment extends BaseFragment implements LoginView {
 
     private EditText mTextViewEmail;
     private EditText mTextViewPassword;

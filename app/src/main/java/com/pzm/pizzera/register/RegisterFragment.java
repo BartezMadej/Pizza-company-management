@@ -12,9 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.pzm.pizzera.BaseFragment;
 import com.pzm.pizzera.R;
 
-public class RegisterFragment extends Fragment implements RegisterView {
+public class RegisterFragment extends BaseFragment implements RegisterView {
 
 	final String TAG = "RegisterFragment";
 
@@ -42,18 +43,6 @@ public class RegisterFragment extends Fragment implements RegisterView {
 		presenter = new RegisterPresenter(this, new RegisterInteractor());
 
 		return view;
-	}
-
-	private void showProgressBar() {
-		if (progressBar != null) {
-			progressBar.setVisibility(View.VISIBLE);
-		}
-	}
-
-	private void hideProgressBar() {
-		if (progressBar != null) {
-			progressBar.setVisibility(View.INVISIBLE);
-		}
 	}
 
 	@Override
@@ -99,10 +88,6 @@ public class RegisterFragment extends Fragment implements RegisterView {
 				email.getText().toString(),
 				phoneNumber.getText().toString()
 		);
-	}
-
-	public String getUid() {
-		return FirebaseAuth.getInstance().getCurrentUser().getUid();
 	}
 }
 
