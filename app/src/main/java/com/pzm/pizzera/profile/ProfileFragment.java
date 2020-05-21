@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,36 +16,41 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.pzm.pizzera.BaseFragment;
 import com.pzm.pizzera.R;
+import com.pzm.pizzera.register.RegisterInteractor;
+import com.pzm.pizzera.register.RegisterPresenter;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends BaseFragment {
 
-    private TextView mName;
-    private TextView mSurname;
-    private TextView mPhone;
-    private TextView mEmail;
-    private TextView mSalary;
-    private TextView mRole;
-    private CircleImageView mImage;
+    private TextView Name;
+    private TextView Surname;
+    private TextView Phone;
+    private TextView Email;
+    private TextView Salary;
+    private TextView Role;
+    private CircleImageView Image;
 
     private DatabaseReference reference;
     private FirebaseUser user;
+
+    private ProfilePresenter presenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        mName = view.findViewById(R.id.name);
-        mSurname = view.findViewById(R.id.surname);
-        mPhone = view.findViewById(R.id.phone);
-        mEmail = view.findViewById(R.id.email);
-        mSalary = view.findViewById(R.id.salary);
-        mRole = view.findViewById(R.id.role);
-        mImage = view.findViewById(R.id.image);
+        Name = view.findViewById(R.id.name);
+        Surname = view.findViewById(R.id.surname);
+        Phone = view.findViewById(R.id.phone);
+        Email = view.findViewById(R.id.email);
+        Salary = view.findViewById(R.id.salary);
+        Role = view.findViewById(R.id.role);
+        Image = view.findViewById(R.id.image);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
@@ -54,15 +58,15 @@ public class ProfileFragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ProfileModel profile = dataSnapshot.getValue(ProfileModel.class);
+                ProfileInteractor profile = dataSnapshot.getValue(ProfileInteractor.class);
                 assert profile != null;
-                mName.setText(profile.getName());
-                mSurname.setText(profile.getSurname());
-                mPhone.setText(profile.getPhone());
-                mEmail.setText(profile.getEmail());
-                mSalary.setText(profile.getSalary());
-                mRole.setText(profile.getRole());
-                Glide.with(getContext()).load(profile.getPhoto()).into(mImage);
+                Name.setText(profile.getName());
+                Surname.setText(profile.getSurname());
+                Phone.setText(profile.getPhone());
+                Email.setText(profile.getEmail());
+                Salary.setText(profile.getSalary());
+                Role.setText(profile.getRole());
+                Glide.with(getContext()).load(profile.getPhoto()).into(Image);
 
             }
 
@@ -71,6 +75,8 @@ public class ProfileFragment extends Fragment {
 
             }
         });
+        presenter = new ProfilePresenter(this, new ProfileInteractor());
+
         return view;
     }
 }

@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.pzm.pizzera.BaseFragment;
 import com.pzm.pizzera.R;
 import com.pzm.pizzera.home.HomeFragment;
+import com.pzm.pizzera.profile.ProfileFragment;
 
 public class LoginFragment extends BaseFragment implements LoginView {
 
