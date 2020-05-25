@@ -18,13 +18,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.pzm.pizzera.BaseFragment;
 import com.pzm.pizzera.R;
-import com.pzm.pizzera.register.RegisterInteractor;
-import com.pzm.pizzera.register.RegisterPresenter;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class ProfileFragment extends BaseFragment {
+public class ProfileFragment extends BaseFragment implements ProfileView {
 
     private TextView Name;
     private TextView Surname;
@@ -79,4 +77,23 @@ public class ProfileFragment extends BaseFragment {
 
         return view;
     }
+
+    @Override
+    public void setNameError(){Name.setError("Invalid name");}
+
+    @Override
+    public void setSurnameError(){Surname.setError("Invalid surname");}
+
+    @Override
+    public void setPhoneError(){Phone.setError("Invalid phone");}
+
+    @Override
+    public void setEmailError(){Email.setError("Invalid email");}
+
+    @Override
+    public void setSalaryError(){Salary.setError("Invalid salary");}
+
+    @Override
+    public void setRoleError(){Role.setError("Invalid role");}
+
 }

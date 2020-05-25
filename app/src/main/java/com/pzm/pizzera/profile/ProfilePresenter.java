@@ -1,35 +1,54 @@
 package com.pzm.pizzera.profile;
 
-import android.text.TextUtils;
-import android.util.Patterns;
 
-public class ProfilePresenter extends ProfileInteractor implements ProfileInteractor.OnValidate {
-	private ProfileInteractor profileModel;
+public class ProfilePresenter implements ProfileInteractor.OnValidate {
+	private ProfileView profileView;
 	private ProfileInteractor profileInteractor;
 
-	public ProfilePresenter(ProfileFragment profileFragment, ProfileInteractor profileInteractor) {
-		super();
+	public ProfilePresenter(ProfileView profileView, ProfileInteractor profileInteractor) {
+		this.profileView = profileView;
+		this.profileInteractor = profileInteractor;
+	}
+
+
+	public void validateCredentials(String name, String surname, String phone, String email, String salary){
+
+		profileInteractor.validate(name, surname, phone, email, salary, this);
 	}
 
 	@Override
-	public boolean validate(){
-		String regexStr = "^[0-9]{9}$";
-		if (!profileModel.getPhone().matches(regexStr)){
-			return false;
+	public void onNameError(){
+		if (profileView != null) {
+			profileView.setNameError();
 		}
-		regexStr = "^[1-9]+$";
-		if (!this.getSalary().matches(regexStr)){
-			return false;
-		}
-		regexStr = "([A-Z][a-z][a-z]*)";
-		if (!this.getName().matches(regexStr) || !this.getSurname().matches(regexStr)){
-			return false;
-		}
-		if (TextUtils.isEmpty(this.getEmail()) || !Patterns.EMAIL_ADDRESS.matcher(this.getEmail()).matches()){
-			return false;
-		}
-		return true;
 	}
 
+	@Override
+	public void onSurnameError(){
+		if (profileView != null) {
+			profileView.setSurnameError();
+		}
+	}
+
+	@Override
+	public void onPhoneError(){
+		if (profileView != null) {
+			profileView.setPhoneError();
+		}
+	}
+
+	@Override
+	public void onEmailError(){
+		if (profileView != null) {
+			profileView.setEmailError();
+		}
+	}
+
+	@Override
+	public void onSalaryError(){
+		if (profileView != null) {
+			profileView.setNameError();
+		}
+	}
 
 }
