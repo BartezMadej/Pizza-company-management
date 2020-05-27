@@ -9,7 +9,7 @@ public class UserModel {
 	private String name;
 	private String surname;
 	private String role;
-	private String phone;
+	private String phoneNumber;
 	private String email;
 	private String photo;
 }

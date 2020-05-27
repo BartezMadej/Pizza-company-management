@@ -19,6 +19,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.pzm.pizzera.BaseFragment;
 import com.pzm.pizzera.R;
 
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -51,7 +53,7 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
         Image = view.findViewById(R.id.image);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
+        reference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -60,11 +62,11 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
                 assert profile != null;
                 Name.setText(profile.getName());
                 Surname.setText(profile.getSurname());
-                Phone.setText(profile.getPhone());
+                Phone.setText(profile.getPhoneNumber());
                 Email.setText(profile.getEmail());
                 Salary.setText(profile.getSalary());
                 Role.setText(profile.getRole());
-                Glide.with(getContext()).load(profile.getPhoto()).into(Image);
+                Glide.with(requireContext()).load(profile.getPhoto()).into(Image);
 
             }
 
