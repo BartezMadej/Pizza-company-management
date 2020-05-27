@@ -11,41 +11,41 @@ public class ProfilePresenter implements ProfileInteractor.OnValidate {
 	}
 
 
-	public void validateCredentials(String name, String surname, String phone, String email, String salary){
+	public void validateCredentials(String name, String surname, String phone, String email, String salary) {
 
 		profileInteractor.validate(name, surname, phone, email, salary, this);
 	}
 
 	@Override
-	public void onNameError(){
+	public void onNameError() {
 		if (profileView != null) {
 			profileView.setNameError();
 		}
 	}
 
 	@Override
-	public void onSurnameError(){
+	public void onSurnameError() {
 		if (profileView != null) {
 			profileView.setSurnameError();
 		}
 	}
 
 	@Override
-	public void onPhoneError(){
+	public void onPhoneError() {
 		if (profileView != null) {
 			profileView.setPhoneError();
 		}
 	}
 
 	@Override
-	public void onEmailError(){
+	public void onEmailError() {
 		if (profileView != null) {
 			profileView.setEmailError();
 		}
 	}
 
 	@Override
-	public void onSalaryError(){
+	public void onSalaryError() {
 		if (profileView != null) {
 			profileView.setNameError();
 		}

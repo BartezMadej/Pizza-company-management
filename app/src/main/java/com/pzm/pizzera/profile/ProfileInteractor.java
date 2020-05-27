@@ -22,27 +22,27 @@ public class ProfileInteractor extends UserModel {
         void onSalaryError();
     }
 
-    public void validate(String name, String surname, String phone, String email, String salary, OnValidate listener){
+    public void validate(String name, String surname, String phone, String email, String salary, OnValidate listener) {
         String regexStr = "^[0-9]{9}$";
-        if (!phone.matches(regexStr)){
+        if (!phone.matches(regexStr)) {
             listener.onPhoneError();
             return;
         }
         regexStr = "^[1-9]+$";
-        if (!salary.matches(regexStr)){
+        if (!salary.matches(regexStr)) {
             listener.onSalaryError();
             return;
         }
         regexStr = "([A-Z][a-z][a-z]*)";
-        if (!name.matches(regexStr)){
+        if (!name.matches(regexStr)) {
             listener.onNameError();
             return;
         }
-        if (!surname.matches(regexStr)){
+        if (!surname.matches(regexStr)) {
             listener.onSurnameError();
             return;
         }
-        if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             listener.onEmailError();
             return;
         }

@@ -19,83 +19,93 @@ import com.google.firebase.database.ValueEventListener;
 import com.pzm.pizzera.BaseFragment;
 import com.pzm.pizzera.R;
 
-import java.util.Objects;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class ProfileFragment extends BaseFragment implements ProfileView {
 
-    private TextView Name;
-    private TextView Surname;
-    private TextView Phone;
-    private TextView Email;
-    private TextView Salary;
-    private TextView Role;
-    private CircleImageView Image;
+	private TextView Name;
+	private TextView Surname;
+	private TextView Phone;
+	private TextView Email;
+	private TextView Salary;
+	private TextView Role;
+	private CircleImageView Image;
 
-    private DatabaseReference reference;
-    private FirebaseUser user;
+	private DatabaseReference reference;
+	private FirebaseUser user;
 
-    private ProfilePresenter presenter;
+	private ProfilePresenter presenter;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        Name = view.findViewById(R.id.name);
-        Surname = view.findViewById(R.id.surname);
-        Phone = view.findViewById(R.id.phone);
-        Email = view.findViewById(R.id.email);
-        Salary = view.findViewById(R.id.salary);
-        Role = view.findViewById(R.id.role);
-        Image = view.findViewById(R.id.image);
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+							 Bundle savedInstanceState) {
+		// Inflate the layout for this fragment
+		View view = inflater.inflate(R.layout.fragment_profile, container, false);
+		Name = view.findViewById(R.id.name);
+		Surname = view.findViewById(R.id.surname);
+		Phone = view.findViewById(R.id.phone);
+		Email = view.findViewById(R.id.email);
+		Salary = view.findViewById(R.id.salary);
+		Role = view.findViewById(R.id.role);
+		Image = view.findViewById(R.id.image);
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
+		user = FirebaseAuth.getInstance().getCurrentUser();
+		reference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
 
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ProfileInteractor profile = dataSnapshot.getValue(ProfileInteractor.class);
-                assert profile != null;
-                Name.setText(profile.getName());
-                Surname.setText(profile.getSurname());
-                Phone.setText(profile.getPhoneNumber());
-                Email.setText(profile.getEmail());
-                Salary.setText(profile.getSalary());
-                Role.setText(profile.getRole());
-                Glide.with(requireContext()).load(profile.getPhoto()).into(Image);
+		reference.addValueEventListener(new ValueEventListener() {
+			@Override
+			public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+				ProfileInteractor profile = dataSnapshot.getValue(ProfileInteractor.class);
+				assert profile != null;
+				Name.setText(profile.getName());
+				Surname.setText(profile.getSurname());
+				Phone.setText(profile.getPhoneNumber());
+				Email.setText(profile.getEmail());
+				Salary.setText(profile.getSalary());
+				Role.setText(profile.getRole());
+				Glide.with(requireContext()).load(profile.getPhoto()).into(Image);
 
-            }
+			}
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+			@Override
+			public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
-        presenter = new ProfilePresenter(this, new ProfileInteractor());
+			}
+		});
+		presenter = new ProfilePresenter(this, new ProfileInteractor());
 
-        return view;
-    }
+		return view;
+	}
 
-    @Override
-    public void setNameError(){Name.setError("Invalid name");}
+	@Override
+	public void setNameError() {
+		Name.setError("Invalid name");
+	}
 
-    @Override
-    public void setSurnameError(){Surname.setError("Invalid surname");}
+	@Override
+	public void setSurnameError() {
+		Surname.setError("Invalid surname");
+	}
 
-    @Override
-    public void setPhoneError(){Phone.setError("Invalid phone");}
+	@Override
+	public void setPhoneError() {
+		Phone.setError("Invalid phone");
+	}
 
-    @Override
-    public void setEmailError(){Email.setError("Invalid email");}
+	@Override
+	public void setEmailError() {
+		Email.setError("Invalid email");
+	}
 
-    @Override
-    public void setSalaryError(){Salary.setError("Invalid salary");}
+	@Override
+	public void setSalaryError() {
+		Salary.setError("Invalid salary");
+	}
 
-    @Override
-    public void setRoleError(){Role.setError("Invalid role");}
+	@Override
+	public void setRoleError() {
+		Role.setError("Invalid role");
+	}
 
 }
