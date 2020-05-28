@@ -16,7 +16,7 @@ import java.util.Comparator;
 public class UsersListInteractor {
 
 	private DatabaseReference dataRef;
-	private ArrayList<UserModel> usersList = new ArrayList<UserModel>();
+	private ArrayList<UserModel> users = new ArrayList<UserModel>();
 
 	UsersListInteractor() {
 		dataRef = FirebaseDatabase.getInstance().getReference("users");
@@ -25,7 +25,7 @@ public class UsersListInteractor {
 	interface OnUsersListFinishedListener {
 		void onDatabaseError();
 
-		void onAdapterSet(ArrayList<UserModel> uList);
+		void onAdapterSet(ArrayList<UserModel> users);
 	}
 
 	public void getUsersFromDatabase(final OnUsersListFinishedListener listener) {
@@ -36,11 +36,11 @@ public class UsersListInteractor {
 					UserModel value = data.getValue(UserModel.class);
 					if (value != null) {
 						value.setId(data.getKey());
-						usersList.add(value);
+						users.add(value);
 					}
 				}
 				sortWorkersList();
-				listener.onAdapterSet(usersList);
+				listener.onAdapterSet(users);
 			}
 
 			@Override
@@ -51,7 +51,7 @@ public class UsersListInteractor {
 	}
 
 	private void sortWorkersList() {
-		Collections.sort(usersList, new Comparator<UserModel>() {
+		Collections.sort(users, new Comparator<UserModel>() {
 			@Override
 			public int compare(UserModel o1, UserModel o2) {
 				return o1.getSurname().compareToIgnoreCase(o2.getSurname());

@@ -23,7 +23,7 @@ public class UsersListPresenter implements UsersListInteractor.OnUsersListFinish
 	}
 
 	@Override
-	public void onAdapterSet(ArrayList<UserModel> uList) {
-		usersListView.setAdapter(uList);
+	public void onAdapterSet(ArrayList<UserModel> users) {
+		usersListView.setAdapter(users);
 	}
 }

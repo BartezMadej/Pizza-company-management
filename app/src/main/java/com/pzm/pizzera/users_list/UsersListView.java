@@ -5,7 +5,7 @@ import com.pzm.pizzera.UserModel;
 import java.util.ArrayList;
 
 public interface UsersListView {
-	void setAdapter(ArrayList<UserModel> uList);
+	void setAdapter(ArrayList<UserModel> users);
 
 	void setDatabaseError();
 }
