@@ -11,12 +11,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginModel {
+public class LoginInteractor {
 	private FirebaseAuth fAuth;
 	private int loginCounter;
 	public final static int MAX_LOGIN = 3;
 
-	LoginModel() {
+	LoginInteractor() {
 		fAuth = FirebaseAuth.getInstance();
 		loginCounter = 0;
 	}
@@ -74,12 +74,12 @@ public class LoginModel {
 
 	private void rememberUserData(final String email, final String password, boolean ifChecked) {
 		if (ifChecked) {
-			SharedPreferences.Editor editor = LoginFragment.mPrefs.edit();
+			SharedPreferences.Editor editor = LoginFragment.dataPrefs.edit();
 			editor.putString("user_email", email);
 			editor.putString("user_password", password);
 			editor.apply();
 		} else
-			LoginFragment.mPrefs.edit().clear().apply();
+			LoginFragment.dataPrefs.edit().clear().apply();
 	}
 
 }

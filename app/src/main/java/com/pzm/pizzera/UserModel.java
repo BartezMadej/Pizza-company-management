@@ -1,5 +1,7 @@
 package com.pzm.pizzera;
 
+import androidx.annotation.NonNull;
+
 import lombok.Data;
 
 @Data
@@ -12,4 +14,9 @@ public class UserModel {
 	private String phoneNumber;
 	private String email;
 	private String photo;
+	@Override
+	public @NonNull String toString()
+	{
+		return this.surname+" "+this.name;
+	}
 }

@@ -1,25 +1,25 @@
 package com.pzm.pizzera.login;
 
 
-public class LoginPresenter implements LoginModel.OnLoginFinishedListener {
+public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener {
 	private LoginView loginView;
-	private LoginModel loginModel;
+	private LoginInteractor loginInteractor;
 
-	LoginPresenter(LoginView loginView, LoginModel loginModel)  //constructor
+	LoginPresenter(LoginView loginView, LoginInteractor loginInteractor)  //constructor
 	{
 		this.loginView = loginView;
-		this.loginModel = loginModel;
+		this.loginInteractor = loginInteractor;
 	}
 
 	public void validateCredentials(String email, String password, boolean ifChecked) {    //login and validation
-		if (!loginModel.validate(email, password, this))
+		if (!loginInteractor.validate(email, password, this))
 			return;
 		loginView.showProgress();
-		loginModel.login(email, password, ifChecked, this);
+		loginInteractor.login(email, password, ifChecked, this);
 	}
 
 	public void checkIfAlreadyLogged() {
-		loginModel.alreadyLogged(this);
+		loginInteractor.alreadyLogged(this);
 	}
 
 	@Override
