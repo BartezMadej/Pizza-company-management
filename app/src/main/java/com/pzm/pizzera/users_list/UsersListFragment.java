@@ -20,15 +20,14 @@ import com.pzm.pizzera.UserModel;
 import com.pzm.pizzera.profile.ProfileFragment;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class UsersListFragment extends Fragment implements UsersListView {
 
 	private ListView listView;
 	private ArrayAdapter<String> listAdapter;
-
-	private ArrayList<String> usersNames;
 	private ArrayList<UserModel> usersList;
-
 	private UsersListPresenter usersPresenter;
 
 	@Override
@@ -44,10 +43,7 @@ public class UsersListFragment extends Fragment implements UsersListView {
 	@Override
 	public void setAdapter(ArrayList<UserModel> users) {
 		usersList = new ArrayList<UserModel>(users);
-
-		usersNames = new ArrayList<String>();
-		for (int i = 0; i < usersList.size(); ++i)
-			usersNames.add(usersList.get(i).getSurname()+" "+usersList.get(i).getName());
+		List<String> usersNames = users.stream().map(user->user.getName()).collect(Collectors.toList());
 		listAdapter = new ArrayAdapter<String>(getLayoutInflater().getContext(), android.R.layout.simple_list_item_1, usersNames);
 		listView.setAdapter(listAdapter);
 	}
