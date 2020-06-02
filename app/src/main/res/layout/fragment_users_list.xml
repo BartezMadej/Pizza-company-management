@@ -6,7 +6,7 @@
 	android:orientation="vertical"
 	tools:context=".users_list.UsersListFragment">
 
-	<ListView
+	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/workersList"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
