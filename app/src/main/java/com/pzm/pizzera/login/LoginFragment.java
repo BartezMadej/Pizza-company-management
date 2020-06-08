@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +20,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.pzm.pizzera.BaseFragment;
 import com.pzm.pizzera.R;
 import com.pzm.pizzera.home.HomeFragment;
 
 public class LoginFragment extends BaseFragment implements LoginView {
+	final String TAG = "LoginFragment";
 
 	private EditText textViewEmail;
 	private EditText textViewPassword;
@@ -114,6 +117,7 @@ public class LoginFragment extends BaseFragment implements LoginView {
 
 	@Override
 	public void navigateToHome() {
+		Log.d(TAG, "navigateToHome: logged as: " + FirebaseAuth.getInstance().getCurrentUser().getUid());
 		Fragment fragment = new HomeFragment();
 		FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

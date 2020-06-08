@@ -9,11 +9,11 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.pzm.pizzera.BaseFragment;
 import com.pzm.pizzera.R;
+import com.pzm.pizzera.UserModel;
+import com.pzm.pizzera.UserRole;
 
 public class RegisterFragment extends BaseFragment implements RegisterView {
 
@@ -30,7 +30,7 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_register, container,false);
+		View view = inflater.inflate(R.layout.fragment_register, container, false);
 
 		progressBar = view.findViewById(R.id.registerProgressBar);
 		name = view.findViewById(R.id.fieldName);
@@ -41,7 +41,6 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
 		view.findViewById(R.id.buttonCreateUser).setOnClickListener(v -> validateForm());
 
 		presenter = new RegisterPresenter(this, new RegisterInteractor());
-
 		return view;
 	}
 
@@ -83,10 +82,13 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
 	private void validateForm() {
 		Log.d(TAG, "validateForm: validate");
 		presenter.validateCredentials(
-				name.getText().toString(),
-				surname.getText().toString(),
-				email.getText().toString(),
-				phoneNumber.getText().toString()
+				UserModel.builder()
+						.name(name.getText().toString())
+						.surname(surname.getText().toString())
+						.email(email.getText().toString())
+						.role(UserRole.USER)
+						.phoneNumber(phoneNumber.getText().toString())
+						.build()
 		);
 	}
 }

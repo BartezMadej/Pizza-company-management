@@ -1,6 +1,7 @@
 package com.pzm.pizzera.profile;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.pzm.pizzera.BaseFragment;
 import com.pzm.pizzera.R;
+import com.pzm.pizzera.UserModel;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -56,16 +58,23 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
 		reference.addValueEventListener(new ValueEventListener() {
 			@Override
 			public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-				ProfileInteractor profile = dataSnapshot.getValue(ProfileInteractor.class);
-				assert profile != null;
-				Name.setText(profile.getName());
-				Surname.setText(profile.getSurname());
-				Phone.setText(profile.getPhoneNumber());
-				Email.setText(profile.getEmail());
-				Salary.setText(profile.getSalary());
-				Role.setText(profile.getRole());
-				Glide.with(requireContext()).load(profile.getPhoto()).into(Image);
-
+				UserModel user = dataSnapshot.getValue(UserModel.class);
+//				assert profile != null;
+				if (user != null) {
+					Name.setText(user.getName());
+					Surname.setText(user.getSurname());
+					Phone.setText(user.getPhoneNumber());
+					Email.setText(user.getEmail());
+					Salary.setText(user.getSalary());
+					Role.setText(user.getRole().toString());
+					if (user.getPhoto() != null) {
+						Glide.with(requireContext()).load(user.getPhoto()).into(Image);
+					} else {
+						//TODO: load default profile picture
+					}
+				} else {
+					Log.d("ProfileFragment", "onDataChange: null user!");
+				}
 			}
 
 			@Override

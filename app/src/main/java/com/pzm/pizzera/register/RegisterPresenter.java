@@ -2,6 +2,8 @@ package com.pzm.pizzera.register;
 
 import android.util.Log;
 
+import com.pzm.pizzera.UserModel;
+
 public class RegisterPresenter implements RegisterInteractor.OnRegisterFinishedListener {
 	private final RegisterView registerView;
 	private final RegisterInteractor registerInteractor;
@@ -11,11 +13,11 @@ public class RegisterPresenter implements RegisterInteractor.OnRegisterFinishedL
 		this.registerInteractor = registerInteractor;
 	}
 
-	public void validateCredentials(String name, String surname, String email, String phoneNumber) {
+	public void validateCredentials(UserModel user) {
 		if (registerView != null) {
 			registerView.showProgress();
 		}
-		registerInteractor.register(email, name, surname, phoneNumber, this);
+		registerInteractor.register(user, this);
 	}
 
 

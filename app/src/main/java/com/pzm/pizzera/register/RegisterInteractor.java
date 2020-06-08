@@ -7,8 +7,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.pzm.pizzera.UserModel;
 
-import java.util.HashMap;
 import java.util.Random;
 
 public class RegisterInteractor {
@@ -29,41 +29,22 @@ public class RegisterInteractor {
 		void onSuccess();
 	}
 
-	public void register(final String email, final String name, final String surname, final String phoneNumber, final OnRegisterFinishedListener listener) {
 
-		if (TextUtils.isEmpty(name)) {
-			listener.onNameError();
+	public void register(UserModel user, final OnRegisterFinishedListener listener) {
+
+		if (validateUser(user, listener)) {
 			return;
 		}
-		if (TextUtils.isEmpty(surname)) {
-			listener.onSurnameError();
-			return;
-		}
-
-		if (TextUtils.isEmpty(email) || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-			listener.onEmailError();
-			return;
-		}
-
-		if (TextUtils.isEmpty(phoneNumber) || phoneNumber.length() != 9) {
-			listener.onPhoneNumberError();
-			return;
-		}
-
-		HashMap<String, String> map = new HashMap<String, String>() {{
-			put("name", name);
-			put("surname", surname);
-			put("email", email);
-			put("phoneNumber", phoneNumber);
-		}};
 
 		FirebaseAuth.getInstance()
-				.createUserWithEmailAndPassword(email, getSaltString())
+				.createUserWithEmailAndPassword(user.getEmail(), getSaltString())
 				.addOnCompleteListener(
 						task -> {
 							if (task.isSuccessful()) {
-								writeUser(task.getResult().getUser(), map);
-								resetPassword(email, listener);
+								FirebaseUser firebaseUser = task.getResult().getUser();
+								user.setId(firebaseUser.getUid());
+								writeUser(firebaseUser, user);
+								resetPassword(user.getEmail(), listener);
 							} else {
 								String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
 								if (errorCode == "ERROR_EMAIL_ALREADY_IN_USE")
@@ -75,11 +56,33 @@ public class RegisterInteractor {
 				);
 	}
 
-	private void writeUser(FirebaseUser firebaseUser, HashMap<String, String> map) {
+	private boolean validateUser(UserModel user, OnRegisterFinishedListener listener) {
+		if (TextUtils.isEmpty(user.getName())) {
+			listener.onNameError();
+			return true;
+		}
+		if (TextUtils.isEmpty(user.getSurname())) {
+			listener.onSurnameError();
+			return true;
+		}
+
+		if (TextUtils.isEmpty(user.getEmail()) || !android.util.Patterns.EMAIL_ADDRESS.matcher(user.getEmail()).matches()) {
+			listener.onEmailError();
+			return true;
+		}
+
+		if (TextUtils.isEmpty(user.getPhoneNumber()) || user.getPhoneNumber().length() != 9) {
+			listener.onPhoneNumberError();
+			return true;
+		}
+		return false;
+	}
+
+	private void writeUser(FirebaseUser firebaseUser, UserModel user) {
 		FirebaseDatabase.getInstance().getReference()
 				.child("users")
 				.child(firebaseUser.getUid())
-				.setValue(map)
+				.setValue(user)
 				.addOnCompleteListener(task -> {
 					Log.d(TAG, "writeUser: " + task.isSuccessful());
 				});
