@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.pzm.pizzera.login.LoginFragment;
 import com.pzm.pizzera.profile.ProfileFragment;
 import com.pzm.pizzera.register.RegisterFragment;
+import com.pzm.pizzera.users_list.UsersListFragment;
 
 public class MainActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,22 +41,20 @@ public class MainActivity extends AppCompatActivity
 
 		navMenu = navigationView.getMenu();
 
-		FirebaseAuth.AuthStateListener authStateListener = new FirebaseAuth.AuthStateListener() {
-			@Override
-			public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-				FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-				Context context = getApplicationContext();
+		FirebaseAuth.AuthStateListener authStateListener = firebaseAuth -> {
+			FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
-				if(firebaseUser!=null){
-					navMenu.findItem(R.id.nav_login).setVisible(false);
-					navMenu.findItem(R.id.nav_register).setVisible(false);
-					navMenu.findItem(R.id.nav_logout).setVisible(true);
-				}
-				else{
-					navMenu.findItem(R.id.nav_logout).setVisible(false);
-					navMenu.findItem(R.id.nav_login).setVisible(true);
-					navMenu.findItem(R.id.nav_register).setVisible(true);
-				}
+			if(firebaseUser!=null){
+				navMenu.findItem(R.id.nav_login).setVisible(false);
+				navMenu.findItem(R.id.nav_register).setVisible(false);
+				navMenu.findItem(R.id.nav_logout).setVisible(true);
+				navMenu.findItem(R.id.nav_workers_list).setVisible(true);
+			}
+			else{
+				navMenu.findItem(R.id.nav_logout).setVisible(false);
+				navMenu.findItem(R.id.nav_login).setVisible(true);
+				navMenu.findItem(R.id.nav_register).setVisible(true);
+				navMenu.findItem(R.id.nav_workers_list).setVisible(false);
 			}
 		};
 
@@ -83,6 +82,11 @@ public class MainActivity extends AppCompatActivity
 				FirebaseAuth.getInstance().signOut();
 				getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
 						new LoginFragment()).commit();
+				break;
+
+			case "Workers list":
+				getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+						new UsersListFragment()).commit();
 				break;
 		}
 
