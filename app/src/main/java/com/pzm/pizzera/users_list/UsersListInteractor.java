@@ -20,7 +20,7 @@ public class UsersListInteractor {
 	private DatabaseReference dataRef;
 	private ArrayList<UserModel> users = new ArrayList<UserModel>();
 
-	UsersListInteractor() {
+	public UsersListInteractor() {
 		dataRef = FirebaseDatabase.getInstance().getReference("users");
 	}
 
