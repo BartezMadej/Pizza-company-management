@@ -23,7 +23,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.firebase.auth.FirebaseAuth;
 import com.pzm.pizzera.BaseFragment;
 import com.pzm.pizzera.R;
-import com.pzm.pizzera.home.HomeFragment;
+import com.pzm.pizzera.profile.ProfileFragment;
 
 public class LoginFragment extends BaseFragment implements LoginView {
 	final String TAG = "LoginFragment";
@@ -118,7 +118,7 @@ public class LoginFragment extends BaseFragment implements LoginView {
 	@Override
 	public void navigateToHome() {
 		Log.d(TAG, "navigateToHome: logged as: " + FirebaseAuth.getInstance().getCurrentUser().getUid());
-		Fragment fragment = new HomeFragment();
+		Fragment fragment = new ProfileFragment();
 		FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.replace(R.id.fragment_container, fragment);
