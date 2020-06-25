@@ -35,7 +35,7 @@ public class ConvsListFragment extends Fragment implements ConvsListView {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_converastions_list, container, false);
+		View view = inflater.inflate(R.layout.fragment_conversations_list, container, false);
 		conversationsView=view.findViewById(R.id.conversationsList);
 		conversationsView.setHasFixedSize(false);
 		conversationsView.setLayoutManager(new LinearLayoutManager(getContext()));
