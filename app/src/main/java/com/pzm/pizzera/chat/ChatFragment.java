@@ -19,7 +19,7 @@ public class ChatFragment extends Fragment {
 	TabLayout tabLayout;
 	ViewPager2 viewPager;
 	PageAdapter pageChangerAdapter;
-	final static String[] titles = {"Friends", "Chat"};
+	final static String[] titles = {"Chats", "Friends"};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

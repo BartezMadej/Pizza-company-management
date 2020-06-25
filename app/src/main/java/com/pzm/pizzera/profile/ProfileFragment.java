@@ -41,7 +41,7 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-							 Bundle savedInstanceState) {
+	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View view = inflater.inflate(R.layout.fragment_profile, container, false);
 		Name = view.findViewById(R.id.name);
@@ -52,9 +52,13 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
 		Role = view.findViewById(R.id.role);
 		Image = view.findViewById(R.id.image);
 
-		user = FirebaseAuth.getInstance().getCurrentUser();
-		reference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
-
+		if (getArguments() != null) {
+			String id = getArguments().getString("userId");
+			reference = FirebaseDatabase.getInstance().getReference("users").child(id);
+		} else {
+			user = FirebaseAuth.getInstance().getCurrentUser();
+			reference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
+		}
 		reference.addValueEventListener(new ValueEventListener() {
 			@Override
 			public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

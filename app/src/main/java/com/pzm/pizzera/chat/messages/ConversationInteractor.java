@@ -75,36 +75,41 @@ public class ConversationInteractor {
 	}
 
 	public void getChatID(String uid, final OnConverserListFinishedListener listener) {
-		Query ref = FirebaseDatabase.getInstance().getReference("usersChats").orderByKey();
+		Query ref = FirebaseDatabase.getInstance().getReference("usersChats").child(uid);
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
 			@Override
 			public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-				if (!dataSnapshot.exists())
+				if (!dataSnapshot.exists()) {
+					listener.onChatIdSet(createNewChat(uid));
 					return;
-				boolean FLAG_USER1 = false;
-				boolean FLAG_USER2 = false;
-				ArrayList<String> user1chats = new ArrayList<>();
-				ArrayList<String> user2chats = new ArrayList<>();
-				for (DataSnapshot data : dataSnapshot.getChildren()) {
-					String key = data.getKey();
-					if (key != null && key.equals(uid)) {
-						Iterable<DataSnapshot> list = data.getChildren();
-						for (DataSnapshot snapshot : list)
-							user1chats.add(snapshot.getValue(String.class));
-						FLAG_USER1 = true;
-					} else if (key != null && key.equals(currentUser.getUid())) {
-						Iterable<DataSnapshot> list = data.getChildren();
-						for (DataSnapshot snapshot : list)
-							user2chats.add(snapshot.getValue(String.class));
-						FLAG_USER2 = true;
-					}
-					if (FLAG_USER1 && FLAG_USER2)
-						break;
 				}
-				for (String var : user1chats) {
-					if (user2chats.contains(var)) {
-						listener.onChatIdSet(var);
-						return;
+				ArrayList<String> list = new ArrayList<>();
+				for (DataSnapshot data : dataSnapshot.getChildren()) {
+					String chatStr = data.getValue(String.class);
+					list.add(chatStr);
+				}
+				findChatId(uid, list, listener);
+			}
+
+			@Override
+			public void onCancelled(@NonNull DatabaseError databaseError) {
+				listener.onDatabaseError();
+			}
+		});
+	}
+
+	private void findChatId(String uid, ArrayList<String> currentUserChatList, final OnConverserListFinishedListener listener) {
+		Query ref = FirebaseDatabase.getInstance().getReference("usersChats").child(currentUser.getUid());
+		ref.addListenerForSingleValueEvent(new ValueEventListener() {
+			@Override
+			public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+				if (dataSnapshot.exists()) {
+					for (DataSnapshot data : dataSnapshot.getChildren()) {
+						String chatStr = data.getValue(String.class);
+						if (currentUserChatList.contains(chatStr)) {
+							listener.onChatIdSet(chatStr);
+							return;
+						}
 					}
 				}
 				listener.onChatIdSet(createNewChat(uid));
@@ -149,10 +154,10 @@ public class ConversationInteractor {
 		int hours = calendar.get(Calendar.HOUR_OF_DAY);
 		int minutes = calendar.get(Calendar.MINUTE);
 		message.setMessageTime(hours + ":" + minutes);
+		chatMessagesRef.setValue(message);
 
 		DatabaseReference chatsRef = FirebaseDatabase.getInstance().getReference("Chats").child(chatId).child("lastMessage");
-		chatsRef.setValue(chatMessagesRef.getKey());
-		chatMessagesRef.setValue(message);
+		chatsRef.setValue(message.getMessage() + " " + message.getMessageTime());
 	}
 
 	public void getMessagesFromDatabase(String chatId,

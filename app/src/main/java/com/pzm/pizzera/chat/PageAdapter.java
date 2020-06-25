@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.pzm.pizzera.chat.conversations_list.ConvsListFragment;
 import com.pzm.pizzera.chat.conversers_list.ConversersListFragment;
 import com.pzm.pizzera.home.HomeFragment;
 import com.pzm.pizzera.users_list.UsersListFragment;
@@ -19,9 +20,9 @@ public class PageAdapter extends FragmentStateAdapter {
 	@Override
 	public Fragment createFragment(int position) {
 		if (position == 0)
-			return new ConversersListFragment();
+			return new ConvsListFragment();
 		else
-			return new HomeFragment();
+			return new ConversersListFragment();
 	}
 
 	@Override
