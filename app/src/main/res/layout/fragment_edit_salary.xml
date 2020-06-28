@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<RelativeLayout
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="413dp"
+			android:orientation="vertical">
+
+			<de.hdodenhof.circleimageview.CircleImageView
+				android:id="@+id/image"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="50dp"
+				android:src="@mipmap/ic_launcher" />
+
+			<TextView
+				android:id="@+id/nameTag"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dp"
+				android:maxHeight="30sp"
+				android:text="name"
+				android:textAlignment="center"
+				android:textSize="12sp" />
+
+			<TextView
+				android:id="@+id/name"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="0dp"
+				android:maxHeight="30sp"
+				android:text="name"
+				android:textAlignment="center"
+				android:textSize="20sp" />
+
+			<TextView
+				android:id="@+id/surnameTag"
+				android:layout_width="413dp"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="160dp"
+				android:maxHeight="30sp"
+				android:text="surname"
+				android:textAlignment="center"
+				android:textSize="12sp" />
+
+			<TextView
+				android:id="@+id/surname"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:maxHeight="30sp"
+				android:text="surname"
+				android:textAlignment="center"
+				android:textSize="20sp" />
+
+			<TextView
+				android:id="@+id/salaryTag"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:maxHeight="30sp"
+				android:text="salary"
+				android:textAlignment="center"
+				android:textSize="12sp" />
+
+			<EditText
+				android:id="@+id/salary"
+				android:layout_width="match_parent"
+				android:layout_height="44dp"
+				android:maxHeight="30sp"
+				android:text="salary"
+				android:textAlignment="center"
+				android:textSize="20sp" />
+
+			<TextView
+				android:id="@+id/bonusTag"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:maxHeight="30sp"
+				android:text="bonus"
+				android:textAlignment="center"
+				android:textSize="12sp" />
+
+			<EditText
+				android:id="@+id/bonus"
+				android:layout_width="match_parent"
+				android:layout_height="47dp"
+				android:maxHeight="30sp"
+				android:text="bonus"
+				android:textAlignment="center"
+				android:textSize="20sp" />
+
+			<Button
+				android:id="@+id/buttonUpdate"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center|center_vertical"
+				android:onClick="updateVals"
+				android:text="update"
+				android:visibility="visible"
+				tools:visibility="visible" />
+		</LinearLayout>
+	</RelativeLayout>
+</FrameLayout>

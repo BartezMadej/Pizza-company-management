@@ -17,6 +17,7 @@ public class UserModel {
 	private String id;
 	@Nullable
 	private String salary;
+	private String bonus;
 	private String name;
 	private String surname;
 	private UserRole role;
