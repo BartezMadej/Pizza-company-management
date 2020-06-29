@@ -44,7 +44,6 @@ public class EditSalaryFragment extends BaseFragment implements EditSalaryView {
 
 	private DatabaseReference reference;
 	private FirebaseUser user;
-
 	private EditSalaryPresenter presenter;
 
 	@Override
@@ -57,74 +56,26 @@ public class EditSalaryFragment extends BaseFragment implements EditSalaryView {
 		image = view.findViewById(R.id.image);
 		bonus = view.findViewById(R.id.bonus);
 		buttonUpdate = view.findViewById(R.id.buttonUpdate);
+		presenter = new EditSalaryPresenter(this, new EditSalaryInteractor());
 
 		user = FirebaseAuth.getInstance().getCurrentUser();
 		reference = FirebaseDatabase.getInstance().getReference("users");
 		Bundle bundle = this.getArguments();
 		buttonUpdate.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(View v) { switchView(v); }
+			public void onClick(View v) { presenter.updateUserData(reference,salary.getText().toString(), bonus.getText().toString(), userId); }
 		});
 
 		if(bundle != null) {
 			userId = bundle.getString("userId","-1");
 		}
-		reference.addValueEventListener(new ValueEventListener() {
-			@Override
-			public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-				for( DataSnapshot ds : dataSnapshot.getChildren()) {
-
-					UserModel profile = ds.getValue(UserModel.class);
-					if(profile.getId().equalsIgnoreCase(userId)){
-					assert profile != null;
-					name.setText(profile.getName());
-					surname.setText(profile.getSurname());
-					salary.setText(profile.getSalary());
-					bonus.setText(profile.getBonus());
-					if(profile.getPhoto() != null )
-						Glide.with(requireContext()).load(profile.getPhoto()).into(image);
-					}
-
-				}
-			}
-
-			@Override
-			public void onCancelled(@NonNull DatabaseError databaseError) {
-				return;
-			}
-		});
-		presenter = new EditSalaryPresenter(this, new EditSalaryInteractor());
+		presenter.getUserData(reference,userId);
 
 		return view;
 	}
 
-	private void switchView(View v) {
-		ValueEventListener valueEventListener = new ValueEventListener() {
-			@Override
-			public void onDataChange(DataSnapshot dataSnapshot) {
-				for(DataSnapshot ds : dataSnapshot.getChildren()) {
-					UserModel val = new UserModel();
-					UserModel uid = ds.getValue(UserModel.class);
-					if( uid.getId().equalsIgnoreCase(userId)) {
-						uid.setSalary(salary.getText().toString());
-						uid.setBonus(bonus.getText().toString());
-						reference.child(uid.getId()).setValue(uid);
-					}
-
-				}
-			}
-
-			@Override
-			public void onCancelled(@NonNull DatabaseError databaseError) {
-				return;
-			}
-		};
-		reference.addListenerForSingleValueEvent(valueEventListener);
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+	@Override
+	public void switchView() {
 		SalariesFragment fragment = new SalariesFragment();
 		FragmentManager manager;
 		try {
@@ -146,4 +97,15 @@ public class EditSalaryFragment extends BaseFragment implements EditSalaryView {
 	public void setBonusError() {
 		bonus.setError("Invalid bonus");
 	}
+
+	@Override
+	public void updateUserInfo(String name, String surname, String salary, String bonus, String photo) {
+		this.name.setText(name);
+		this.surname.setText(surname);
+		this.salary.setText(salary);
+		this.bonus.setText(bonus);
+		if(photo != null )
+			Glide.with(requireContext()).load(photo).into(image);
+	}
+
 }

@@ -47,7 +47,7 @@ public class SalariesFragment extends Fragment implements SalariesView {
 
 
 		for( UserModel user: users) {
-			String tmp = String.format("%s %s Salary: %s Bonus: %s", user.getName(),user.getSurname(),user.getSalary(),user.getBonus());
+			String tmp = String.format("%s %s \nSalary: %s Bonus: %s", user.getName(),user.getSurname(),user.getSalary(),user.getBonus());
 			usersStr.add(tmp);
 		}
 

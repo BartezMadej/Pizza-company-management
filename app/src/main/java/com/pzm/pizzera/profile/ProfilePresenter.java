@@ -12,7 +12,6 @@ public class ProfilePresenter implements ProfileInteractor.OnValidate {
 
 
 	public void validateCredentials(String name, String surname, String phone, String email, String salary) {
-
 		profileInteractor.validate(name, surname, phone, email, salary, this);
 	}
 
