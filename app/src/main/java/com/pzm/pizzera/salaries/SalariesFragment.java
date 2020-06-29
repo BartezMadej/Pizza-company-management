@@ -50,11 +50,6 @@ public class SalariesFragment extends Fragment implements SalariesView {
 			String tmp = String.format("%s %s Salary: %s Bonus: %s", user.getName(),user.getSurname(),user.getSalary(),user.getBonus());
 			usersStr.add(tmp);
 		}
-		//List<String> usersNames = users.stream().map(user->user.getName()).collect(Collectors.toList());
-		//List<String> usersSalaries = users.stream().map(user->user.getSalary()).collect(Collectors.toList());
-		//List<String> usersBonuses = users.stream().map(user->user.getBonus()).collect(Collectors.toList());
-		//List<String> usersStr = new ArrayList<>();
-
 
 		listAdapter = new ArrayAdapter<String>(getLayoutInflater().getContext(), android.R.layout.simple_list_item_1, usersStr);
 		listView.setAdapter(listAdapter);

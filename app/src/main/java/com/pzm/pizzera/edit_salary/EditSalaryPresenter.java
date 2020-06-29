@@ -10,22 +10,8 @@ public class EditSalaryPresenter implements EditSalaryInteractor.OnValidate{
 	}
 
 
-	public void validateCredentials(String name, String surname, String salary, String bonus) {
-		profileInteractor.validate(name, surname, salary, bonus, this);
-	}
-
-	@Override
-	public void onNameError() {
-		if (profileView != null) {
-			profileView.setNameError();
-		}
-	}
-
-	@Override
-	public void onSurnameError() {
-		if (profileView != null) {
-			profileView.setSurnameError();
-		}
+	public void validateCredentials(String salary, String bonus) {
+		profileInteractor.validate(salary, bonus, this);
 	}
 
 	@Override

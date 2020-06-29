@@ -58,7 +58,6 @@ public class SalariesInteractor {
 
 			@Override
 			public void onCancelled(@NonNull DatabaseError databaseError) {
-				Log.d("TST", databaseError.getMessage()); //Don't ignore errors!
 			}
 		};
 		dataRef.addListenerForSingleValueEvent(valueEventListener);
