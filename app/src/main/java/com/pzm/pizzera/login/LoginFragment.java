@@ -119,7 +119,7 @@ public class LoginFragment extends BaseFragment implements LoginView {
 	@Override
 	public void navigateToHome() {
 		Log.d(TAG, "navigateToHome: logged as: " + FirebaseAuth.getInstance().getCurrentUser().getUid());
-		Fragment fragment = new ProfileFragment();
+		Fragment fragment = new EditProfileFragment();
 		FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.replace(R.id.fragment_container, fragment);

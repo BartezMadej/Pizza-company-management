@@ -92,7 +92,9 @@ public class EditProfileFragment extends BaseFragment {
 					surname.setText(user.getSurname());
 					phone.setText(user.getPhoneNumber());
 					email.setText(user.getEmail());
-					Glide.with(getActivity().getApplicationContext()).load(user.getPhoto()).into(image_profile);
+					if (getActivity().getApplicationContext() != null) {
+						Glide.with(getActivity().getApplicationContext()).load(user.getPhoto()).into(image_profile);
+					}
 				}
 			}
 
@@ -103,35 +105,17 @@ public class EditProfileFragment extends BaseFragment {
 		});
 
 
-		close.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view){
-				getActivity().finish();
-			}
+		close.setOnClickListener(view1 -> getActivity().finish());
 
-		});
+		tv_change.setOnClickListener(view12 -> CropImage.activity()
+				.setAspectRatio(1,1)
+				.setCropShape(CropImageView.CropShape.OVAL)
+				.start(getContext(), EditProfileFragment.this));
 
-		tv_change.setOnClickListener(new View.OnClickListener(){
-			@Override
-			public void onClick(View view){
-				CropImage.activity()
-						.setAspectRatio(1,1)
-						.setCropShape(CropImageView.CropShape.OVAL)
-						.start(getContext(), EditProfileFragment.this);
-			}
-
-
-		});
-
-		image_profile.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				CropImage.activity()
-						.setAspectRatio(1,1)
-						.setCropShape(CropImageView.CropShape.OVAL)
-						.start(getContext(), EditProfileFragment.this);
-			}
-		});
+		image_profile.setOnClickListener(v -> CropImage.activity()
+				.setAspectRatio(1,1)
+				.setCropShape(CropImageView.CropShape.OVAL)
+				.start(getContext(), EditProfileFragment.this));
 
 		save.setOnClickListener(new View.OnClickListener(){
 			@Override
@@ -151,15 +135,15 @@ public class EditProfileFragment extends BaseFragment {
 
 	private void updateProfile(String name, String surname, String phone, String email, String salary, String role){
 		DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
-		HashMap<String, Object> hashMap = new HashMap<>();
-		hashMap.put("name", name);
-		hashMap.put("surname", surname);
-		hashMap.put("phone", phone);
-		hashMap.put("email", email);
-		hashMap.put("salary", salary);
-		hashMap.put("role", role);
-
-		reference.updateChildren(hashMap);
+		UserModel model = UserModel.builder()
+				.name(name.toString())
+				.surname(surname.toString())
+				.email(email.toString())
+				.role(UserRole.USER)
+				.phoneNumber(phone.toString())
+				.salary(salary)
+				.build();
+		reference.setValue(model);
 	}
 
 	private String getFileExtension(Uri uri){
@@ -177,36 +161,25 @@ public class EditProfileFragment extends BaseFragment {
 			StorageReference filereference = storageRef.child(System.currentTimeMillis()+"."+getFileExtension(imageUri));
 
 			uploadTask = filereference.putFile(imageUri);
-			uploadTask.continueWithTask(new Continuation() {
-				@Override
-				public Object then(@NonNull Task task) throws Exception {
-					if (!task.isSuccessful()){
-						throw task.getException();
-					}
-					return filereference.getDownloadUrl();
+			uploadTask.continueWithTask((Continuation) task -> {
+				if (!task.isSuccessful()){
+					throw task.getException();
 				}
-			}).addOnCompleteListener(new OnCompleteListener<Uri>() {
-				@Override
-				public void onComplete(@NonNull Task task) {
-					if(task.isSuccessful()){
-						Uri downloadUri = (Uri)task.getResult();
-						assert downloadUri != null;
-						String myUrl = downloadUri.toString();
+				return filereference.getDownloadUrl();
+			}).addOnCompleteListener((OnCompleteListener<Uri>) task -> {
+				if(task.isSuccessful()){
+					Uri downloadUri = (Uri)task.getResult();
+					assert downloadUri != null;
+					String myUrl = downloadUri.toString();
 
-						DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
+					DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
 
-						HashMap<String, Object> hashMap = new HashMap<>();
-						hashMap.put("imageurl", ""+myUrl);
-						reference.updateChildren(hashMap);
-						pd.dismiss();
-					}
+					HashMap<String, Object> hashMap = new HashMap<>();
+					hashMap.put("imageurl", ""+myUrl);
+					reference.updateChildren(hashMap);
+					pd.dismiss();
 				}
-			}).addOnFailureListener(new OnFailureListener() {
-				@Override
-				public void onFailure(@NonNull Exception e) {
-					Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-				}
-			});
+			}).addOnFailureListener((OnFailureListener) e -> Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show());
 		}
 	}
 
