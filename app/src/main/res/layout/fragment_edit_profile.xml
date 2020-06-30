@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="vertical"
+    tools:context=".profile.EditProfileFragment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scroll"
+        android:background="?android:attr/windowBackground"
+        android:fillViewport="true" >
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar"
+            android:background="?android:attr/windowBackground">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/met_ic_clear"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/close"
+                    android:text="Edit Profile"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,SmallSp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Save"
+                    android:layout_marginEnd="10dp"
+                    android:id="@+id/save"
+                    android:textSize="16sp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    tools:ignore="HardcodedText" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </ScrollView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrol"
+        android:background="?android:attr/windowBackground"
+        android:fillViewport="true" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_gravity="center"
+            android:id="@+id/image_profile"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change Photo"
+            android:layout_gravity="center"
+            android:id="@+id/tv_change"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/name"
+            android:hint="name"
+            android:layout_marginTop="20dp"
+            tools:ignore="HardcodedText" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/surname"
+            android:hint="surname"
+            android:layout_marginTop="20dp"
+            tools:ignore="HardcodedText" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/phone"
+            android:hint="phone"
+            android:layout_marginTop="20dp"
+            tools:ignore="HardcodedText" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/email"
+            android:hint="email"
+            android:layout_marginTop="20dp"
+            tools:ignore="HardcodedText" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/salary"
+            android:hint="salary"
+            android:layout_marginTop="20dp"
+            tools:ignore="HardcodedText"
+            android:visibility="invisible"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/role"
+            android:hint="role"
+            android:layout_marginTop="20dp"
+            tools:ignore="HardcodedText"
+            android:visibility="invisible"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Przycisk dla Tomka" />
+
+
+    </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>
