@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 
@@ -19,7 +18,6 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
 
 	final String TAG = "RegisterFragment";
 
-	private ProgressBar progressBar;
 	private EditText name;
 	private EditText surname;
 	private EditText email;
@@ -32,7 +30,7 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
 							 Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_register, container, false);
 
-		progressBar = view.findViewById(R.id.registerProgressBar);
+		super.setProgressBar(R.id.registerProgressBar);
 		name = view.findViewById(R.id.fieldName);
 		surname = view.findViewById(R.id.fieldSurname);
 		email = view.findViewById(R.id.fieldEmail);

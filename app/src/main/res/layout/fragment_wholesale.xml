@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:layout_marginHorizontal="30dp"
+	android:orientation="vertical"
+	tools:context=".wholesale.WholesaleFragment">
+	>
+
+
+	<TextView
+		android:id="@+id/textViewOrder"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="ZAMÓW"
+		android:textAlignment="center"
+		android:textSize="36sp"
+		android:textStyle="bold" />
+
+	<RelativeLayout
+		android:id="@+id/topWholesaleContainer"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Select Vendor"
+			android:textAlignment="center" />
+
+		<Spinner
+			android:id="@+id/vendorsList"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="20dp"
+			android:tooltipText="Select Vendor" />
+
+		<TextView
+			android:id="@+id/textProduct"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/vendorsList"
+			android:text="Select Product"
+			android:textAlignment="center" />
+
+		<LinearLayout
+			android:id="@+id/linearContatinerProductId"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:layout_below="@id/textProduct"
+			android:gravity="center">
+
+			<Spinner
+				android:id="@+id/productsList"
+				android:layout_width="200dp"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/vendorsList"
+				android:layout_marginTop="20dp"
+				android:tooltipText="Select Product " />
+
+			<EditText
+				android:id="@+id/textProductAmount"
+				android:layout_width="100dp"
+				android:layout_height="wrap_content"
+				android:hint="Amount"
+				android:textAlignment="center" />
+		</LinearLayout>
+
+		<Button
+			android:id="@+id/buttonAddProduct"
+			android:layout_width="170dp"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:layout_below="@+id/linearContatinerProductId"
+			android:text="Add to order" />
+	</RelativeLayout>
+
+	<RelativeLayout
+		android:id="@+id/bottomWholesaleContainer"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+
+		<ListView
+			android:id="@+id/orderList"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_above="@id/buttonApplyOrder"
+			android:layout_marginTop="30dp" />
+
+		<Button
+			android:id="@+id/buttonApplyOrder"
+			android:layout_width="match_parent"
+			android:layout_height="72dp"
+			android:layout_alignParentBottom="true"
+			android:text="Złóż Zamówienie" />
+	</RelativeLayout>
+
+</LinearLayout>

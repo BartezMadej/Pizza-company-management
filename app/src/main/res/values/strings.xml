@@ -25,6 +25,16 @@
 	<string name="unknown">Uknown</string>
 	<string name="home">Home</string>
 
+	<string-array name="products">
+		<item>first</item>
+		<item>two</item>
+		<item>three</item>
+	</string-array>
+
+	<string-array name="vendors">
+		<item>first</item>
+	</string-array>
+
 	<!-- TODO: Remove or change this placeholder text -->
 	<string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
