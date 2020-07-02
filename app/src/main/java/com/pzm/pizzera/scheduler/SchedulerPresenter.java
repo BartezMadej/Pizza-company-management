@@ -16,4 +16,9 @@ public class SchedulerPresenter implements
 	public void onDatabaseError() {
 		schedulerView.setDatabaseError();
 	}
+
+	@Override
+	public void onTimeInterval(){
+		schedulerView.setTimeInterval(schedulerInteractor.getTimesFromDatabase());
+	}
 }

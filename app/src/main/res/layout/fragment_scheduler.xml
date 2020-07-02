@@ -516,7 +516,7 @@
 
 
 				<RelativeLayout
-					android:id="@+id/mondayRelativeLayout"
+					android:id="@+id/mon"
 					android:layout_width="0dp"
 					android:layout_height="match_parent"
 					android:layout_weight="2"
@@ -527,7 +527,7 @@
 				</RelativeLayout>
 
 				<RelativeLayout
-					android:id="@+id/tuesdayRelativeLayout"
+					android:id="@+id/tue"
 					android:layout_width="0dp"
 					android:layout_height="match_parent"
 					android:layout_weight="2"
@@ -538,7 +538,7 @@
 				</RelativeLayout>
 
 				<RelativeLayout
-					android:id="@+id/wednesdayRelativeLayout"
+					android:id="@+id/wed"
 					android:layout_width="0dp"
 					android:layout_height="match_parent"
 					android:layout_weight="2"
@@ -557,7 +557,7 @@
 				</RelativeLayout>
 
 				<RelativeLayout
-					android:id="@+id/thursdayRelativeLayout"
+					android:id="@+id/thu"
 					android:layout_width="0dp"
 					android:layout_height="match_parent"
 					android:layout_weight="2"
@@ -569,7 +569,7 @@
 				</RelativeLayout>
 
 				<RelativeLayout
-					android:id="@+id/fridayRelativeLayout"
+					android:id="@+id/fri"
 					android:layout_width="0dp"
 					android:layout_height="match_parent"
 					android:layout_weight="2"
