@@ -514,6 +514,10 @@
 						android:textSize="15sp" />
 				</RelativeLayout>
 
+				<View
+					android:layout_width="1dp"
+					android:layout_height="1440dp"
+					android:background="@color/clear_gray"/>
 
 				<RelativeLayout
 					android:id="@+id/mon"
@@ -522,9 +526,12 @@
 					android:layout_weight="2"
 					android:clickable="true"
 					android:focusable="true">
-
-					<include layout="@layout/vertical_layout" />
 				</RelativeLayout>
+
+				<View
+					android:layout_width="1dp"
+					android:layout_height="1440dp"
+					android:background="@color/clear_gray"/>
 
 				<RelativeLayout
 					android:id="@+id/tue"
@@ -533,9 +540,12 @@
 					android:layout_weight="2"
 					android:clickable="true"
 					android:focusable="true">
-
-					<include layout="@layout/vertical_layout" />
 				</RelativeLayout>
+
+				<View
+					android:layout_width="1dp"
+					android:layout_height="1440dp"
+					android:background="@color/clear_gray"/>
 
 				<RelativeLayout
 					android:id="@+id/wed"
@@ -544,17 +554,12 @@
 					android:layout_weight="2"
 					android:clickable="true"
 					android:focusable="true">
-
-					<include layout="@layout/vertical_layout" />
-
-					<View
-						android:id="@+id/refreshView"
-						android:layout_width="fill_parent"
-						android:layout_height="fill_parent"
-						android:background="@color/clear_gray"
-						android:visibility="invisible" />
-
 				</RelativeLayout>
+
+				<View
+					android:layout_width="1dp"
+					android:layout_height="1440dp"
+					android:background="@color/clear_gray"/>
 
 				<RelativeLayout
 					android:id="@+id/thu"
@@ -563,10 +568,12 @@
 					android:layout_weight="2"
 					android:clickable="true"
 					android:focusable="true">
-
-					<include layout="@layout/vertical_layout" />
-
 				</RelativeLayout>
+
+				<View
+					android:layout_width="1dp"
+					android:layout_height="1440dp"
+					android:background="@color/clear_gray"/>
 
 				<RelativeLayout
 					android:id="@+id/fri"
@@ -575,9 +582,6 @@
 					android:layout_weight="2"
 					android:clickable="true"
 					android:focusable="true">
-
-					<include layout="@layout/vertical_layout" />
-
 				</RelativeLayout>
 
 			</LinearLayout>

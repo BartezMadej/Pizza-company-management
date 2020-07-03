@@ -12,13 +12,17 @@ public class SchedulerPresenter implements
 		this.schedulerView = schedulerView;
 	}
 
+	public void setTimeValues(){
+		schedulerInteractor.getTimesFromDatabase(this);
+	}
+
 	@Override
 	public void onDatabaseError() {
 		schedulerView.setDatabaseError();
 	}
 
 	@Override
-	public void onTimeInterval(){
-		schedulerView.setTimeInterval(schedulerInteractor.getTimesFromDatabase());
+	public void onTimeInterval(TimeIntervalModel times){
+		schedulerView.setTimeInterval(times);
 	}
 }

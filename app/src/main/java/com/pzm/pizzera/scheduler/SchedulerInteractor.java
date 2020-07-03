@@ -1,5 +1,7 @@
 package com.pzm.pizzera.scheduler;
 
+import android.util.Log;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,7 +17,8 @@ import java.util.TreeMap;
 
 public class SchedulerInteractor extends BaseFragment {
 
-	final String TAG = "SchedulerFragment";
+	final String TAG = "SchedulerInteractor";
+	TimeIntervalModel times;
 
 	private DatabaseReference dataRef;
 
@@ -26,25 +29,25 @@ public class SchedulerInteractor extends BaseFragment {
 
 	interface OnSchedulerFinishedListener {
 		void onDatabaseError();
-		void onTimeInterval();
+		void onTimeInterval(TimeIntervalModel times);
 	}
 
-	public TimeIntervalModel getTimesFromDatabase() {
-		TimeIntervalModel times = new TimeIntervalModel();
+	public void getTimesFromDatabase(final SchedulerInteractor.OnSchedulerFinishedListener listener) {
+		Map<String, String> tmp = new TreeMap<>();
+		times = new TimeIntervalModel(tmp);
 		ValueEventListener valueEventListener = new ValueEventListener() {
-			Map<String, String> tmp = new TreeMap<>();
 			@Override
 			public void onDataChange(DataSnapshot dataSnapshot) {
 				for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
 					tmp.put(postSnapshot.getKey(), postSnapshot.getValue().toString());
 				}
 				times.setTimes(tmp);
+				listener.onTimeInterval(times);
 			}
 			@Override
 			public void onCancelled(@NotNull DatabaseError databaseError){
 			}
 		};
-		dataRef.addListenerForSingleValueEvent(valueEventListener);
-		return times;
+		dataRef.addValueEventListener(valueEventListener);
 	}
 }
