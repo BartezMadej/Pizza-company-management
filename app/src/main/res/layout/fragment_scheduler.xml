@@ -256,7 +256,7 @@
 						android:layout_alignParentEnd="true"
 						android:layout_marginEnd="6dp"
 						android:gravity="center"
-						android:text="@string/_12am"
+						android:text="12am"
 						android:textSize="15sp" />
 
 					<TextView
@@ -267,7 +267,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="60dp"
 						android:gravity="center"
-						android:text="@string/_1am"
+						android:text="1am"
 						android:textSize="15sp" />
 
 
@@ -279,7 +279,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="120dp"
 						android:gravity="center"
-						android:text="@string/_2am"
+						android:text="2am"
 						android:textSize="15sp" />
 
 					<TextView
@@ -290,7 +290,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="180dp"
 						android:gravity="center"
-						android:text="@string/_3am"
+						android:text="3am"
 						android:textSize="15sp" />
 
 					<TextView
@@ -301,7 +301,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="240dp"
 						android:gravity="center"
-						android:text="@string/_4am"
+						android:text="4am"
 						android:textSize="15sp" />
 
 					<TextView
@@ -312,7 +312,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="300dp"
 						android:gravity="center"
-						android:text="@string/_5am"
+						android:text="5am"
 						android:textSize="15sp" />
 
 					<TextView
@@ -323,7 +323,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="360dp"
 						android:gravity="center"
-						android:text="@string/_6am"
+						android:text="6am"
 						android:textSize="15sp" />
 
 					<TextView
@@ -334,7 +334,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="420dp"
 						android:gravity="center"
-						android:text="@string/_7am"
+						android:text="7am"
 						android:textSize="15sp" />
 
 					<TextView
@@ -345,7 +345,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="480dp"
 						android:gravity="center"
-						android:text="@string/_8am"
+						android:text="8am"
 						android:textSize="15sp" />
 
 					<TextView
@@ -356,7 +356,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="540dp"
 						android:gravity="center"
-						android:text="@string/_9am"
+						android:text="9am"
 						android:textSize="15sp" />
 
 					<TextView
@@ -367,7 +367,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="600dp"
 						android:gravity="center"
-						android:text="@string/_10am"
+						android:text="10am"
 						android:textSize="15sp" />
 
 					<TextView
@@ -378,7 +378,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="660dp"
 						android:gravity="center"
-						android:text="@string/_11am"
+						android:text="11am"
 						android:textSize="15sp" />
 
 					<TextView
@@ -389,7 +389,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="720dp"
 						android:gravity="center"
-						android:text="@string/_12pm"
+						android:text="12pm"
 						android:textSize="15sp" />
 
 					<TextView
@@ -400,7 +400,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="780dp"
 						android:gravity="center"
-						android:text="@string/_1pm"
+						android:text="1pm"
 						android:textSize="15sp" />
 
 					<TextView
@@ -411,7 +411,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="840dp"
 						android:gravity="center"
-						android:text="@string/_2pm"
+						android:text="2pm"
 						android:textSize="15sp" />
 
 					<TextView
@@ -422,7 +422,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="900dp"
 						android:gravity="center"
-						android:text="@string/_3pm"
+						android:text="3pm"
 						android:textSize="15sp" />
 
 					<TextView
@@ -433,7 +433,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="960dp"
 						android:gravity="center"
-						android:text="@string/_4pm"
+						android:text="4pm"
 						android:textSize="15sp" />
 
 					<TextView
@@ -444,7 +444,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="1020dp"
 						android:gravity="center"
-						android:text="@string/_5pm"
+						android:text="5pm"
 						android:textSize="15sp" />
 
 					<TextView
@@ -455,7 +455,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="1080dp"
 						android:gravity="center"
-						android:text="@string/_6pm"
+						android:text="6pm"
 						android:textSize="15sp" />
 
 					<TextView
@@ -466,7 +466,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="1140dp"
 						android:gravity="center"
-						android:text="@string/_7pm"
+						android:text="7pm"
 						android:textSize="15sp" />
 
 					<TextView
@@ -477,7 +477,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="1200dp"
 						android:gravity="center"
-						android:text="@string/_8pm"
+						android:text="8pm"
 						android:textSize="15sp" />
 
 					<TextView
@@ -488,7 +488,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="1260dp"
 						android:gravity="center"
-						android:text="@string/_9pm"
+						android:text="9pm"
 						android:textSize="15sp" />
 
 					<TextView
@@ -499,7 +499,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="1320dp"
 						android:gravity="center"
-						android:text="@string/_10pm"
+						android:text="10pm"
 						android:textSize="15sp" />
 
 					<TextView
@@ -510,7 +510,7 @@
 						android:layout_marginEnd="6dp"
 						android:layout_marginTop="1380dp"
 						android:gravity="center"
-						android:text="@string/_11pm"
+						android:text="11pm"
 						android:textSize="15sp" />
 				</RelativeLayout>
 
