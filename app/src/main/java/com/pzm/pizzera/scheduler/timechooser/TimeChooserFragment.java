@@ -17,7 +17,6 @@ public class TimeChooserFragment extends BaseFragment {
 
 		View view = inflater.inflate(R.layout.fragment_time_chooser, container, false);
 		TextView textView = view.findViewById(R.id.test);
-
 		textView.setText(requireArguments().getString("week", ""));
 
 		return view;
