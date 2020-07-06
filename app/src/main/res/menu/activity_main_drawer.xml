@@ -20,6 +20,14 @@
 			android:id="@+id/nav_workers_list"
 			android:icon="@drawable/ic_chat"
 			android:title="@string/menu_workers_list" />
+		<item
+			android:id="@+id/nav_chat"
+			android:icon="@drawable/ic_chat"
+			android:title="@string/menu_chat" />
+		<item
+			android:id="@+id/nav_schedule"
+			android:icon="@drawable/ic_chat"
+			android:title="@string/menu_schedule" />
 	</group>
 
 </menu>
