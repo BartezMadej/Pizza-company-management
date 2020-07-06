@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="413dp"
+			android:orientation="vertical">
+
+			<TextView
+				android:id="@+id/nameTag2"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dp"
+				android:maxHeight="30sp"
+				android:text="Name"
+				android:textAlignment="center"
+				android:textSize="12sp" />
+
+			<TextView
+				android:id="@+id/name2"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="0dp"
+				android:maxHeight="30sp"
+				android:text="name"
+				android:textAlignment="center"
+				android:textSize="20sp" />
+
+			<TextView
+				android:id="@+id/surnameTag2"
+				android:layout_width="413dp"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="160dp"
+				android:maxHeight="30sp"
+				android:text="Surname"
+				android:textAlignment="center"
+				android:textSize="12sp" />
+
+			<TextView
+				android:id="@+id/surname2"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:maxHeight="30sp"
+				android:text="surname"
+				android:textAlignment="center"
+				android:textSize="20sp" />
+
+			<TextView
+				android:id="@+id/fromTag"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:maxHeight="30sp"
+				android:text="From"
+				android:textAlignment="center"
+				android:textSize="12sp" />
+
+			<TextView
+				android:id="@+id/from2"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:maxHeight="30sp"
+				android:text="From"
+				android:textAlignment="center"
+				android:textSize="20sp" />
+
+			<TextView
+				android:id="@+id/To"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:maxHeight="30sp"
+				android:text="To"
+				android:textAlignment="center"
+				android:textSize="12sp" />
+
+			<TextView
+				android:id="@+id/to2"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:maxHeight="30sp"
+				android:text="To"
+				android:textAlignment="center"
+				android:textSize="20sp" />
+
+			<Button
+				android:id="@+id/buttonApprove"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center|center_vertical"
+				android:onClick="updateVals"
+				android:text="Approve"
+				android:visibility="visible"
+				tools:visibility="visible" />
+		</LinearLayout>
+	</RelativeLayout>
+</FrameLayout>

@@ -11,6 +11,7 @@ public class Order {
 	public String amount;
 	public String product;
 
+	public Order(){}
 	@NonNull
 	@Override
 	public String toString() {
