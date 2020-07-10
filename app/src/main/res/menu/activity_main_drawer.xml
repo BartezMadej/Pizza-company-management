@@ -5,6 +5,14 @@
 
 	<group android:checkableBehavior="single">
 		<item
+			android:id="@+id/nav_profile"
+			android:icon="@drawable/ic_chat"
+			android:title="@string/menu_profile" />
+		<item
+			android:id="@+id/nav_edit_profile"
+			android:icon="@drawable/ic_chat"
+			android:title="@string/menu_edit_profile" />
+		<item
 			android:id="@+id/nav_login"
 			android:icon="@drawable/ic_launcher_foreground"
 			android:title="@string/menu_login" />
@@ -28,6 +36,24 @@
 			android:id="@+id/nav_schedule"
 			android:icon="@drawable/ic_chat"
 			android:title="@string/menu_schedule" />
+		<item
+			android:id="@+id/nav_orders_history"
+			android:icon="@drawable/ic_chat"
+			android:title="@string/menu_orders_history" />
+		<item
+			android:id="@+id/nav_leaves"
+			android:icon="@drawable/ic_chat"
+			android:title="@string/menu_leaves" />
+		<item
+			android:id="@+id/nav_salaries"
+			android:icon="@drawable/ic_chat"
+			android:title="@string/menu_salaries" />
+		<item
+			android:id="@+id/nav_wholesale"
+			android:icon="@drawable/ic_chat"
+			android:title="@string/menu_wholesale" />
+
+
 	</group>
 
 </menu>

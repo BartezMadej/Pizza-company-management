@@ -45,6 +45,11 @@
 	<string-array name="vendors">
 		<item>first</item>
 	</string-array>
-	
 	<string name="updating">updating</string>
+	<string name="menu_orders_history">Orders History</string>
+	<string name="menu_leaves">Leaves</string>
+	<string name="menu_salaries">Salaries</string>
+	<string name="menu_edit_profile">Edit Profile</string>
+	<string name="menu_profile">Profile</string>
+	<string name="menu_wholesale">Wholesale</string>
 </resources>

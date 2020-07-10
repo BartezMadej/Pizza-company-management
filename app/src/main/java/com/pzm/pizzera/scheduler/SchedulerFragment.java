@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.pzm.pizzera.BaseFragment;
 import com.pzm.pizzera.R;
+import com.pzm.pizzera.leave.LeaveFragment;
 import com.pzm.pizzera.scheduler.timechooser.TimeChooserFragment;
 
 import java.util.Map;
@@ -34,6 +36,21 @@ public class SchedulerFragment extends BaseFragment
 		SchedulerPresenter schedulerPresenter =
 				new SchedulerPresenter(this, new SchedulerInteractor());
 		schedulerPresenter.setTimeValues();
+
+		Button btn = view.findViewById(R.id.makeLeave);
+
+		btn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Fragment fragment = new LeaveFragment();
+				FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+				FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+				fragmentTransaction.replace(R.id.fragment_container, fragment);
+				fragmentTransaction.addToBackStack(null);
+				fragmentTransaction.commit();
+			}
+		});
+
 		return view;
 	}
 

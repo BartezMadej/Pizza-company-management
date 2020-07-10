@@ -71,6 +71,7 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
 					Email.setText(user.getEmail());
 					Salary.setText(user.getSalary());
 					Role.setText(user.getRole().toString());
+
 					if (user.getPhoto() != null) {
 						Glide.with(requireContext()).load(user.getPhoto()).into(Image);
 					} else {

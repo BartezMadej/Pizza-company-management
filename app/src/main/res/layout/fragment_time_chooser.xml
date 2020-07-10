@@ -1,14 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".scheduler.timechooser.TimeChooserFragment">
+	tools:context=".scheduler.timechooser.TimeChooserFragment"
+	android:orientation="vertical">
 
 	<TextView
 		android:id="@+id/test"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:text="@string/hello_blank_fragment" />
+		android:layout_height="75dp"
+		android:text=""
+		android:textSize="65sp"/>
 
-</FrameLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="60dp"
+		android:orientation="horizontal">
+		<TextView
+			android:layout_width="110dp"
+			android:layout_height="60dp"
+			android:text="From:"
+			android:clickable="true"
+			android:textSize="40sp"/>
+			<TextView
+			android:id="@+id/timeFrom"
+			android:layout_width="150dp"
+			android:layout_height="60dp"
+			android:text=""
+			android:clickable="true"
+			android:textSize="40sp"/>
+	</LinearLayout>
+
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="60dp"
+		android:orientation="horizontal">
+		<TextView
+			android:layout_width="110dp"
+			android:layout_height="60dp"
+			android:text="To:"
+			android:clickable="true"
+			android:textSize="40sp"/>
+		<TextView
+			android:id="@+id/timeTo"
+			android:layout_width="150dp"
+			android:layout_height="60dp"
+			android:text=""
+			android:clickable="true"
+			android:textSize="40sp"/>
+	</LinearLayout>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="@color/medium_dark_gray" />
+
+	<Button
+		android:id="@+id/addNewHours"
+		android:layout_width="match_parent"
+		android:layout_height="60dp"
+		android:text="add new hours" />
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="@color/medium_dark_gray" />
+
+	<com.baoyz.swipemenulistview.SwipeMenuListView
+		android:id="@+id/timeIntervals"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" >
+	</com.baoyz.swipemenulistview.SwipeMenuListView>
+
+</LinearLayout>

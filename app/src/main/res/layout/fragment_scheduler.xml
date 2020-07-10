@@ -20,25 +20,16 @@
 			android:layout_height="16dp"
 			android:layout_weight="1">
 
-			<TextView
-				android:id="@+id/currentMonthTextView"
+			<Button
+				android:id="@+id/makeLeave"
 				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
+				android:layout_height="fill_parent"
 				android:layout_alignParentTop="true"
 				android:gravity="center"
 				android:textColor="@color/medium_dark_gray"
 				android:textSize="15sp"
 				android:textStyle="bold" />
 
-			<TextView
-				android:id="@+id/currentYearTextView"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:layout_alignParentBottom="true"
-				android:gravity="center"
-				android:textColor="@color/medium_dark_gray"
-				android:textSize="13sp"
-				android:textStyle="bold" />
 
 		</RelativeLayout>
 

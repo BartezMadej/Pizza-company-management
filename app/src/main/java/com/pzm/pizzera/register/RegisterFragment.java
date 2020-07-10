@@ -30,7 +30,6 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
 							 Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_register, container, false);
 
-		super.setProgressBar(R.id.registerProgressBar);
 		name = view.findViewById(R.id.fieldName);
 		surname = view.findViewById(R.id.fieldSurname);
 		email = view.findViewById(R.id.fieldEmail);

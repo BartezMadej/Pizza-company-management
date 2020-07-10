@@ -144,7 +144,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Przycisk dla Tomka" />
+            android:text="Delete user" />
 
 
     </LinearLayout>
