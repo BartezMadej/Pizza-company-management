@@ -77,6 +77,7 @@ public class ConversationFragment extends Fragment implements ConversationView {
 		String fullName = user.getSurname() + " " + user.getName();
 		converserName.setText(fullName);
 		photo=user.getPhoto();
+		convAdapter.setConverserImage(photo);
 		if (user.getPhoto() == null)
 			converserPhoto.setImageResource(R.mipmap.ic_launcher);
 		else
@@ -103,6 +104,7 @@ public class ConversationFragment extends Fragment implements ConversationView {
 	@Override
 	public void setCurrentUserPhoto(String photo) {
 		currentUserPhoto=photo;
+		convAdapter.setCurrentUserImage(photo);
 	}
 
 	private void onClickSend()

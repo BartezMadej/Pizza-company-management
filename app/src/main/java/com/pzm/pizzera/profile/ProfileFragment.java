@@ -50,7 +50,7 @@ public class ProfileFragment extends BaseFragment implements ProfileView {
 		Email = view.findViewById(R.id.email);
 		Salary = view.findViewById(R.id.salary);
 		Role = view.findViewById(R.id.role);
-		Image = view.findViewById(R.id.image);
+		Image = view.findViewById(R.id.image_profile);
 
 		if (getArguments() != null) {
 			String id = getArguments().getString("userId");

@@ -69,7 +69,16 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
 		else
 			return MSG_TYPE_LEFT;
 	}
-
+	public void setCurrentUserImage(String image)
+	{
+		if(image!=null)
+			currentUserImage=image;
+	}
+	public void setConverserImage(String image)
+	{
+		if(image!=null)
+			converserImage=image;
+	}
 	class ConversationViewHolder extends RecyclerView.ViewHolder {
 		ImageView profileImage;
 		TextView messageView;
