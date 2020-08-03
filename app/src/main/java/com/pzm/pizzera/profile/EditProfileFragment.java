@@ -71,6 +71,7 @@ public class EditProfileFragment extends BaseFragment {
 		salary = view.findViewById(R.id.salary);
 		role = view.findViewById(R.id.role);
 
+		UserModel currUser;
 		firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
 		DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
@@ -135,15 +136,15 @@ public class EditProfileFragment extends BaseFragment {
 
 	private void updateProfile(String name, String surname, String phone, String email, String salary, String role){
 		DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
-		UserModel model = UserModel.builder()
-				.name(name.toString())
-				.surname(surname.toString())
-				.email(email.toString())
-				.role(UserRole.USER)
-				.phoneNumber(phone.toString())
-				.salary(salary)
-				.build();
-		reference.setValue(model);
+		reference.child("surname").setValue(surname);
+		reference.child("name").setValue(name);
+		reference.child("phoneNumber").setValue(phone);
+		reference.child("email").setValue(email);
+		if(!salary.equals(""))
+			reference.child("salary").setValue(salary);
+		if(!role.equals(""))
+			reference.child("role").setValue(role);
+
 	}
 
 	private String getFileExtension(Uri uri){
@@ -175,7 +176,7 @@ public class EditProfileFragment extends BaseFragment {
 					DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
 
 					HashMap<String, Object> hashMap = new HashMap<>();
-					hashMap.put("imageurl", ""+myUrl);
+					hashMap.put("photo", ""+myUrl);
 					reference.updateChildren(hashMap);
 					pd.dismiss();
 				}

@@ -58,13 +58,12 @@ public class ConversationInteractor {
 	}
 
 	public void getCurrentUserPhoto(final OnConverserListFinishedListener listener) {
-		DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser.getUid());
+		DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser.getUid()).child("photo");
 		dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
 			@Override
 			public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-				UserModel user = dataSnapshot.getValue(UserModel.class);
-				if (user != null)
-					listener.onCurrentUserPhoto(user.getPhoto());
+				String photo = dataSnapshot.getValue(String.class);
+				listener.onCurrentUserPhoto(photo);
 			}
 
 			@Override
